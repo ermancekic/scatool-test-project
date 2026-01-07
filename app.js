@@ -1,60 +1,61 @@
-// JavaScript file with 5 vulnerable dependencies for SCA tool testing
+// JavaScript file for SCA tool testing with sourcemap-codec dependency
 
-// Dependency 1: lodash 4.17.15 - Has Command Injection and Prototype Pollution vulnerabilities
-const _ = require('lodash');
+// Using @jridgewell/sourcemap-codec - A library for encoding/decoding source map mappings
+const { encode, decode } = require('@jridgewell/sourcemap-codec');
 
-// Dependency 2: axios 0.21.1 - Has DoS, SSRF, and ReDoS vulnerabilities
-const axios = require('axios');
+console.log('=== SCA Tool Test Project - Sourcemap Codec Demo ===');
 
-// Dependency 3: moment 2.29.1 - Has ReDoS and Path Traversal vulnerabilities
-const moment = require('moment');
+// Example 1: Encoding source map mappings
+// Mappings represent the relationship between generated code and source code
+// Format: [generatedCodeColumn, sourceIndex, sourceCodeLine, sourceCodeColumn]
+const originalMappings = [
+  // Line 0 in generated code
+  [
+    [0, 0, 0, 0],  // Column 0 maps to source 0, line 0, column 0
+    [5, 0, 0, 5],  // Column 5 maps to source 0, line 0, column 5
+  ],
+  // Line 1 in generated code
+  [
+    [0, 0, 1, 0],  // Column 0 maps to source 0, line 1, column 0
+  ],
+  // Line 2 in generated code
+  [
+    [0, 0, 2, 0],  // Column 0 maps to source 0, line 2, column 0
+    [10, 0, 2, 8], // Column 10 maps to source 0, line 2, column 8
+  ]
+];
 
-// Dependency 4: jsonwebtoken 8.5.1 - Has insecure key type and input validation vulnerabilities
-const jwt = require('jsonwebtoken');
+console.log('\nOriginal mappings:');
+console.log(JSON.stringify(originalMappings, null, 2));
 
-// Dependency 5: minimist 1.2.5 - Has Prototype Pollution vulnerability
-const minimist = require('minimist');
+// Encode the mappings into VLQ format
+const encodedMappings = encode(originalMappings);
+console.log('\nEncoded mappings (VLQ format):');
+console.log(encodedMappings);
 
-// Sample usage of the vulnerable dependencies
-console.log('=== SCA Tool Test Project - Vulnerable Dependencies Demo ===');
+// Example 2: Decoding source map mappings
+// Decode the previously encoded mappings back to the original format
+const decodedMappings = decode(encodedMappings);
+console.log('\nDecoded mappings:');
+console.log(JSON.stringify(decodedMappings, null, 2));
 
-// Using lodash to manipulate data (vulnerable version)
-const data = [1, 2, 3, 4, 5];
-const doubled = _.map(data, num => num * 2);
-console.log('Lodash - Doubled array:', doubled);
+// Example 3: Verify encoding/decoding works correctly
+const isCorrect = JSON.stringify(originalMappings) === JSON.stringify(decodedMappings);
+console.log('\nEncoding/Decoding verification:', isCorrect ? 'PASSED ✓' : 'FAILED ✗');
 
-// Using moment for date formatting (vulnerable version)
-const now = moment().format('MMMM Do YYYY, h:mm:ss a');
-console.log('Moment - Current time:', now);
+// Example 4: Demonstrate with a more complex mapping
+const complexMappings = [
+  [[0, 0, 0, 0], [9, 0, 0, 9], [15, 0, 0, 15]],
+  [[0, 0, 1, 0], [3, 0, 1, 3], [7, 0, 1, 7], [12, 0, 1, 12]],
+  [[0, 0, 2, 0]],
+  [[0, 0, 3, 0], [5, 0, 3, 5]]
+];
 
-// Using minimist to parse command line arguments (vulnerable version)
-const args = minimist(process.argv.slice(2));
-console.log('Minimist - Parsed arguments:', args);
+const encodedComplex = encode(complexMappings);
+console.log('\nComplex encoded mappings:', encodedComplex);
 
-// Using jsonwebtoken to create tokens (vulnerable version)
-const token = jwt.sign({ userId: '12345', name: 'Test User' }, 'secret-key', { expiresIn: '1h' });
-console.log('JWT - Generated token:', token.substring(0, 30) + '...');
+const decodedComplex = decode(encodedComplex);
+const isComplexCorrect = JSON.stringify(complexMappings) === JSON.stringify(decodedComplex);
+console.log('Complex encoding/decoding verification:', isComplexCorrect ? 'PASSED ✓' : 'FAILED ✗');
 
-// Using axios to make HTTP requests (vulnerable version)
-async function fetchData() {
-  try {
-    const response = await axios.get('https://api.github.com/repos/ermancekic/scatool-test-project');
-    console.log('Axios - Repository name:', response.data.name);
-    console.log('Axios - Repository stars:', response.data.stargazers_count);
-  } catch (error) {
-    console.error('Axios - Error fetching data:', error.message);
-  }
-}
-
-// Demonstrate more lodash functionality
-const shuffled = _.shuffle([1, 2, 3, 4, 5]);
-console.log('Lodash - Shuffled array:', shuffled);
-
-// Demonstrate more moment functionality
-const tomorrow = moment().add(1, 'days').format('YYYY-MM-DD');
-console.log('Moment - Tomorrow\'s date:', tomorrow);
-
-// Execute the async function
-fetchData().then(() => {
-  console.log('=== All dependencies loaded and tested successfully ===');
-});
+console.log('\n=== Sourcemap codec dependency loaded and tested successfully ===');
