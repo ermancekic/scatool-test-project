@@ -10,6 +10,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@jridgewell/sourcemap-codec": "1.5.0"
+    "lodash": "4.17.4",
+    "minimist": "0.0.8",
+    "qs": "6.2.3",
+    "validator": "10.8.0",
+    "dot-prop": "4.2.0"
   }
 }

@@ -1,61 +1,47 @@
-// JavaScript file for SCA tool testing with sourcemap-codec dependency
+// JavaScript file for SCA tool testing with vulnerable dependencies (CVSS 4.x range risks)
 
-// Using @jridgewell/sourcemap-codec - A library for encoding/decoding source map mappings
-const { encode, decode } = require('@jridgewell/sourcemap-codec');
+// Using lodash - A utility library (vulnerable version with multiple CVEs)
+const _ = require('lodash');
 
-console.log('=== SCA Tool Test Project - Sourcemap Codec Demo ===');
+// Using minimist - A command-line argument parser (vulnerable to prototype pollution)
+const minimist = require('minimist');
 
-// Example 1: Encoding source map mappings
-// Mappings represent the relationship between generated code and source code
-// Format: [generatedCodeColumn, sourceIndex, sourceCodeLine, sourceCodeColumn]
-const originalMappings = [
-  // Line 0 in generated code
-  [
-    [0, 0, 0, 0],  // Column 0 maps to source 0, line 0, column 0
-    [5, 0, 0, 5],  // Column 5 maps to source 0, line 0, column 5
-  ],
-  // Line 1 in generated code
-  [
-    [0, 0, 1, 0],  // Column 0 maps to source 0, line 1, column 0
-  ],
-  // Line 2 in generated code
-  [
-    [0, 0, 2, 0],  // Column 0 maps to source 0, line 2, column 0
-    [10, 0, 2, 8], // Column 10 maps to source 0, line 2, column 8
-  ]
-];
+// Using qs - Query string parser (vulnerable version)
+const qs = require('qs');
 
-console.log('\nOriginal mappings:');
-console.log(JSON.stringify(originalMappings, null, 2));
+// Using validator - String validation library (vulnerable version)
+const validator = require('validator');
 
-// Encode the mappings into VLQ format
-const encodedMappings = encode(originalMappings);
-console.log('\nEncoded mappings (VLQ format):');
-console.log(encodedMappings);
+// Using dot-prop - Property accessor (vulnerable to prototype pollution)
+const dotProp = require('dot-prop');
 
-// Example 2: Decoding source map mappings
-// Decode the previously encoded mappings back to the original format
-const decodedMappings = decode(encodedMappings);
-console.log('\nDecoded mappings:');
-console.log(JSON.stringify(decodedMappings, null, 2));
+console.log('=== SCA Tool Test Project - Vulnerable Dependencies Demo ===');
+console.log('This project contains 5 dependencies with security vulnerabilities');
+console.log('for testing Software Composition Analysis (SCA) tools\n');
 
-// Example 3: Verify encoding/decoding works correctly
-const isCorrect = JSON.stringify(originalMappings) === JSON.stringify(decodedMappings);
-console.log('\nEncoding/Decoding verification:', isCorrect ? 'PASSED ✓' : 'FAILED ✗');
+// Example 1: Using lodash
+const array = [1, 2, 3, 4, 5];
+const doubled = _.map(array, n => n * 2);
+console.log('Lodash example - doubled array:', doubled);
 
-// Example 4: Demonstrate with a more complex mapping
-const complexMappings = [
-  [[0, 0, 0, 0], [9, 0, 0, 9], [15, 0, 0, 15]],
-  [[0, 0, 1, 0], [3, 0, 1, 3], [7, 0, 1, 7], [12, 0, 1, 12]],
-  [[0, 0, 2, 0]],
-  [[0, 0, 3, 0], [5, 0, 3, 5]]
-];
+// Example 2: Using minimist to parse command line arguments
+const args = minimist(process.argv.slice(2));
+console.log('Minimist example - parsed arguments:', args);
 
-const encodedComplex = encode(complexMappings);
-console.log('\nComplex encoded mappings:', encodedComplex);
+// Example 3: Using qs to parse query strings
+const queryString = 'name=John&age=30&city=NYC';
+const parsed = qs.parse(queryString);
+console.log('QS example - parsed query:', parsed);
 
-const decodedComplex = decode(encodedComplex);
-const isComplexCorrect = JSON.stringify(complexMappings) === JSON.stringify(decodedComplex);
-console.log('Complex encoding/decoding verification:', isComplexCorrect ? 'PASSED ✓' : 'FAILED ✗');
+// Example 4: Using validator to validate email
+const email = 'test@example.com';
+const isValid = validator.isEmail(email);
+console.log(`Validator example - "${email}" is ${isValid ? 'valid' : 'invalid'}`);
 
-console.log('\n=== Sourcemap codec dependency loaded and tested successfully ===');
+// Example 5: Using dot-prop to access nested properties
+const obj = { user: { name: 'John', age: 30 } };
+const userName = dotProp.get(obj, 'user.name');
+console.log('Dot-prop example - user name:', userName);
+
+console.log('\n=== All 5 vulnerable dependencies loaded successfully ===');
+console.log('Dependencies: lodash, minimist, qs, validator, dot-prop');
