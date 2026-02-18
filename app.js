@@ -1,47 +1,37 @@
-// JavaScript file for SCA tool testing with vulnerable dependencies (CVSS 4.x range risks)
+// JavaScript file for SCA tool testing with dependencies
 
-// Using lodash - A utility library (vulnerable version with multiple CVEs)
-const _ = require('lodash');
+// Using axios - Promise based HTTP client
+const axios = require('axios');
 
-// Using minimist - A command-line argument parser (vulnerable to prototype pollution)
-const minimist = require('minimist');
+// Using express - Web application framework
+const express = require('express');
 
-// Using qs - Query string parser (vulnerable version)
-const qs = require('qs');
+// Using moment - Date manipulation library
+const moment = require('moment');
 
-// Using validator - String validation library (vulnerable version)
-const validator = require('validator');
-
-// Using dot-prop - Property accessor (vulnerable to prototype pollution)
-const dotProp = require('dot-prop');
-
-console.log('=== SCA Tool Test Project - Vulnerable Dependencies Demo ===');
-console.log('This project contains 5 dependencies with security vulnerabilities');
+console.log('=== SCA Tool Test Project - Dependencies Demo ===');
+console.log('This project contains 3 dependencies without source code location');
 console.log('for testing Software Composition Analysis (SCA) tools\n');
 
-// Example 1: Using lodash
-const array = [1, 2, 3, 4, 5];
-const doubled = _.map(array, n => n * 2);
-console.log('Lodash example - doubled array:', doubled);
+// Example 1: Using moment for date formatting
+const now = moment();
+const formattedDate = now.format('MMMM Do YYYY, h:mm:ss a');
+console.log('Moment example - current date:', formattedDate);
 
-// Example 2: Using minimist to parse command line arguments
-const args = minimist(process.argv.slice(2));
-console.log('Minimist example - parsed arguments:', args);
+// Example 2: Using express to create a simple app
+const app = express();
+app.get('/', (req, res) => {
+  res.send('Hello World!');
+});
+console.log('Express example - web server initialized');
 
-// Example 3: Using qs to parse query strings
-const queryString = 'name=John&age=30&city=NYC';
-const parsed = qs.parse(queryString);
-console.log('QS example - parsed query:', parsed);
+// Example 3: Using axios (configuration only, not making actual request)
+const axiosInstance = axios.create({
+  baseURL: 'https://api.example.com',
+  timeout: 1000,
+  headers: {'X-Custom-Header': 'foobar'}
+});
+console.log('Axios example - HTTP client configured');
 
-// Example 4: Using validator to validate email
-const email = 'test@example.com';
-const isValid = validator.isEmail(email);
-console.log(`Validator example - "${email}" is ${isValid ? 'valid' : 'invalid'}`);
-
-// Example 5: Using dot-prop to access nested properties
-const obj = { user: { name: 'John', age: 30 } };
-const userName = dotProp.get(obj, 'user.name');
-console.log('Dot-prop example - user name:', userName);
-
-console.log('\n=== All 5 vulnerable dependencies loaded successfully ===');
-console.log('Dependencies: lodash, minimist, qs, validator, dot-prop');
+console.log('\n=== All 3 dependencies loaded successfully ===');
+console.log('Dependencies: axios, express, moment');
