@@ -10,10 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "lodash": "4.17.4",
-    "minimist": "0.0.8",
-    "qs": "6.2.3",
-    "validator": "10.8.0",
-    "dot-prop": "4.2.0"
+    "axios": "0.21.1",
+    "express": "4.17.1",
+    "moment": "2.29.1"
   }
 }
