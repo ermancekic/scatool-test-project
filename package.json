@@ -10,6 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "emoji-datasource-apple": "^16.0.0"
+    "super-tiny-icons": "^0.6.0"
   }
 }

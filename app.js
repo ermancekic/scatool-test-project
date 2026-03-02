@@ -1,16 +1,22 @@
 // JavaScript file for SCA tool testing with dependencies
 
-// Using emoji-datasource-apple - Apple emoji data source
-const emojiData = require('emoji-datasource-apple');
+// Using super-tiny-icons - Simple SVG icons
+const path = require('path');
+const fs = require('fs');
 
 console.log('=== SCA Tool Test Project - Dependencies Demo ===');
-console.log('This project uses emoji-datasource-apple\n');
+console.log('This project uses super-tiny-icons\n');
 
-// Example: Using emoji-datasource-apple to list some emojis
-const emojis = emojiData.slice(0, 3);
-emojis.forEach(emoji => {
-  console.log(`Emoji: ${emoji.name} (${emoji.unified})`);
-});
+// Example: Using super-tiny-icons to list some available icons
+const iconsDir = path.join(require.resolve('super-tiny-icons/package.json'), '../images/svg');
+try {
+  const icons = fs.readdirSync(iconsDir).slice(0, 3);
+  icons.forEach(icon => {
+    console.log(`Icon: ${icon}`);
+  });
+} catch (err) {
+  console.error(`Failed to read icons: ${err.message}`);
+}
 
-console.log('\n=== emoji-datasource-apple loaded successfully ===');
-console.log('Dependencies: emoji-datasource-apple');
+console.log('\n=== super-tiny-icons loaded successfully ===');
+console.log('Dependencies: super-tiny-icons');
