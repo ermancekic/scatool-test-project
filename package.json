@@ -1,34 +1,25 @@
 {
   "name": "scatool-test-project",
   "version": "1.0.0",
-  "description": "This is a project that can be used for testing in SCA tool.",
-  "main": "app.js",
-  "files": [
-    "app.js",
-    "archives/",
-    "bin/",
-    "images/",
-    "LICENSE",
-    "README.md"
-  ],
+  "description": "Kleines JS-Projekt mit einer Dependency, die SVG-Bilder enthaelt.",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "test": "echo \"No tests configured\""
   },
-  "keywords": [
-    "sca",
-    "testing",
-    "security"
-  ],
-  "author": "ermancekic",
-  "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ermancekic/scatool-test-project.git"
+    "url": "git+https://github.com/ermancekic/scatool-test-project.git"
   },
-  "publishConfig": {
-    "access": "public"
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/ermancekic/scatool-test-project/issues"
   },
+  "homepage": "https://github.com/ermancekic/scatool-test-project#readme",
   "dependencies": {
-    "super-tiny-icons": "^0.6.0"
+    "country-flag-icons": "^1.6.15"
   }
 }
