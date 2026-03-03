@@ -24,7 +24,7 @@ node app.js
 
 ## Dependencies
 
-- **super-tiny-icons** - Simple SVG icons
+None.
 
 ## Publishing to npm
 
