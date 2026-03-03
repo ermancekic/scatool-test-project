@@ -1,6 +1,6 @@
 {
   "name": "scatool-test-project",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Kleines JS-Projekt mit einer Dependency, die SVG-Bilder enthaelt.",
   "main": "index.js",
   "scripts": {
@@ -18,8 +18,5 @@
   "bugs": {
     "url": "https://github.com/ermancekic/scatool-test-project/issues"
   },
-  "homepage": "https://github.com/ermancekic/scatool-test-project#readme",
-  "dependencies": {
-    "country-flag-icons": "^1.6.15"
-  }
+  "homepage": "https://github.com/ermancekic/scatool-test-project#readme"
 }

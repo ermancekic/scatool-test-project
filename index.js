@@ -1,15 +1,13 @@
 const fs = require('fs');
 const path = require('path');
 
-const packageJsonPath = require.resolve('country-flag-icons/package.json');
-const packageRoot = path.dirname(packageJsonPath);
-const flagsDir = path.join(packageRoot, '3x2');
+const imagesDir = path.join(__dirname, 'images');
 
-const sampleFlags = fs
-  .readdirSync(flagsDir)
-  .filter((file) => file.endsWith('.svg'))
+const sampleImages = fs
+  .readdirSync(imagesDir)
+  .filter((file) => /\.(png|jpg|jpeg|gif|bmp|tiff)$/i.test(file))
   .slice(0, 5);
 
-console.log('Dependency installiert: country-flag-icons');
-console.log('Bilder-Verzeichnis:', flagsDir);
-console.log('Beispiel-Bilddateien:', sampleFlags.join(', '));
+console.log('Keine externe Bild-Dependency installiert.');
+console.log('Lokales Bilder-Verzeichnis:', imagesDir);
+console.log('Beispiel-Bilddateien:', sampleImages.join(', '));
