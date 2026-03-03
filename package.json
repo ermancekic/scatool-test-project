@@ -1,5 +1,5 @@
 {
-  "name": "scatool-test-project",
+  "name": "scatool-test-project2",
   "version": "1.0.2",
   "description": "Kleines JS-Projekt mit einer Dependency, die SVG-Bilder enthaelt.",
   "main": "index.js",
