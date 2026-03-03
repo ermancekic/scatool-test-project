@@ -5,6 +5,8 @@
   "main": "app.js",
   "files": [
     "app.js",
+    "bin/",
+    "images/",
     "LICENSE",
     "README.md"
   ],
